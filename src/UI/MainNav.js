@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { stLogin } from "../component/StAtom";
 
 export default function MainNav() {
+
+    const isLogin = useRecoilValue(stLogin) ;
+
     return (
         <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
             <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -16,10 +21,15 @@ export default function MainNav() {
                 <div className="text-sm lg:flex-grow">
                     <Link to='/' className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                         홈
-                    </Link>                    
+                    </Link>
+                    <Link to='/subway' className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                        지하철 대기 정보
+                    </Link>
                 </div>
                 <div>
-                    <Link to='/login' className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">로그인</Link>
+                    <Link to='/login' className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+                        { isLogin ? "로그아웃" : "로그인"}
+                    </Link>
                 </div>
             </div>
         </nav>
